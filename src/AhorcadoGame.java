@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class AhorcadoGame {
@@ -17,24 +18,30 @@ public class AhorcadoGame {
             letrasAdivinadas[i] = '_';
         }
 
+        StringBuilder letrasMalas = new StringBuilder();
+
         while(!palabraAdivinada && intentos < cantidadIntentos){
 
             System.out.println("Adivina la palabra: " + String.valueOf(letrasAdivinadas) + " (" + palabraSecreta.length() + " letras)");
-
+            
             System.out.println("Introduce una letra: ");
-            char letra = Character.toLowerCase(sc.next().charAt(0));
+           char letra = Character.toLowerCase(sc.next().charAt(0));
             boolean letraCorrecta = false;
+            
+            
             for(int i = 0; i < palabraSecreta.length(); i++){
 
                 if(palabraSecreta.charAt(i) == letra){
                     letrasAdivinadas[i] = letra;
                     letraCorrecta = true;
                 }
-            }
+            }            
 
             if(!letraCorrecta){
                 intentos++;
+                letrasMalas.append(letra + " - ");                
                 System.out.println("¡Letra incorrecta! te quedan " + (cantidadIntentos - intentos) + " intentos.");
+                System.out.println("Letras incorrectas: " + String.valueOf(letrasMalas));
             }
 
             if(String.valueOf(letrasAdivinadas).equals(palabraSecreta)){
